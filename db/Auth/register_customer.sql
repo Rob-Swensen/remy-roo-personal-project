@@ -10,4 +10,5 @@ INSERT INTO customer (
     ${first_name},
     ${last_name},
     ${is_admin}
-);
+)
+RETURNING customer_id, email, first_name, last_name;

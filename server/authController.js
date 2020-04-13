@@ -3,11 +3,12 @@ const bcrypt = require("bcryptjs");
 module.exports = {
   register: async (req, res) => {
     const { email, password, first_name, last_name } = req.body;
+    console.log(req.body)
     const db = req.app.get("db");
 
-    let userEmail = await db.auth.check_customer_email(email);
-    if (userEmail[0]) {
-      return res.status(400).send("Email associated with another account");
+    let user = await db.auth.check_email(email);
+    if (user[0]) {
+      return res.status(400).send("Email already in use");
     }
 
     let salt = bcrypt.genSaltSync(10);
@@ -27,7 +28,7 @@ module.exports = {
       const { email, password } = req.body;
       const db = req.app.get('db');
 
-      let user = await db.auth.check_customer_email(email)
+      let user = await db.auth.check_email(email)
       if(!user[0]){
           return res.status(400).send('E-mail does not exist')
       }

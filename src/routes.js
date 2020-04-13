@@ -1,6 +1,7 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import Auth from "./Components/Auth/Auth";
+import Login from "./Components/Auth/Login";
+import Register from "./Components/Auth/Register";
 import Cart from "./Components/Cart/Cart";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import Form from "./Components/Form/Form";
@@ -12,7 +13,8 @@ import PageNotFound from "./Components/PageNotFound";
 export default (
   <Switch>
     <Route exact path="/" component={Dashboard} />
-    <Route path="/auth" component={Auth} />
+    <Route path="/login" component={Login} />
+    <Route path="/register" component={Register} />
     <Route path="/products" component={Products} />
     <Route path="/product" component={Product} />
     <Route path="/cart" component={Cart} />
