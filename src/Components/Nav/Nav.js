@@ -1,24 +1,24 @@
-import React from 'react';
-import axios from 'axios';
-import {Link} from 'react-router-dom';
+import React from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import "./Nav.scss";
 
-function Nav(props){
+function Nav(props) {
+  const handleLogout = () => {
+    axios.get("/api/logout");
+  };
 
-const handleLogout = () => {
-    axios.get('/api/logout')
-}
-
-    return(
-        <div>
-            <Link to='/login'>
-                <button>Sign In</button>
-            </Link>
-            <Link to='/register'>
-                <button>Register</button>
-            </Link>
-            <button onClick={handleLogout}>Logout</button>
-        </div>
-    )
+  return (
+    <div className="nav-bar">
+      <Link to="/login">
+        <p>Sign In</p>
+      </Link>
+      <Link to="/register">
+        <p>Register</p>
+      </Link>
+      <p onClick={handleLogout}>Logout</p>
+    </div>
+  );
 }
 
 export default Nav;
