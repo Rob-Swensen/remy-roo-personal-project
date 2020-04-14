@@ -16,7 +16,7 @@ export default (
     <Route path="/login" component={Login} />
     <Route path="/register" component={Register} />
     <Route path="/products" component={Products} />
-    <Route path="/product" component={Product} />
+    <Route path="/product/:productId" component={Product} />
     <Route path="/cart" component={Cart} />
     <Route path="/orders" component={Orders} />
     <Route path="/form" component={Form} />

@@ -13,9 +13,10 @@ function Products(props) {
     }, [])
 
     console.log(productsArray)
+    console.log(props)
 
     let mappedArray = productsArray.map((product, index) => (
-        <div key={index} className='product-container'>
+        <div key={index} className='product-container' onClick={() => props.history.push(`/product/${product.product_id}`)}>
             <img src={product.image} alt={product.name} className='product-image'/>
             <p>{product.name}</p>
             <p>{product.description}</p>

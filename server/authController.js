@@ -21,7 +21,10 @@ module.exports = {
       last_name,
       is_admin: false,
     });
-    req.session.user = newUser[0];
+    let customerCart = await db.cart.create_cart(newUser[0].customer_id);
+    let sessionCustomer = {...newUser[0], ...customerCart[0]};
+
+    req.session.user = sessionCustomer;
     res.status(200).send(req.session.user);
   },
   login: async (req, res) => {
