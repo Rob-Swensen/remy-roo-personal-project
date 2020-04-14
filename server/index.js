@@ -37,4 +37,5 @@ app.get("/api/logout", authCtrl.logout);
 
 //Product Endpoints
 
-app.get('/api/products', ctrl.getProducts)
+app.get('/api/products', ctrl.getProducts);
+app.get('/api/product/:product_id', ctrl.getProduct);
