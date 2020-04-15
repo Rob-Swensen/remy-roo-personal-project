@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { getCustomer } from "../../redux/customerReducer";
 
 function Login(props) {
   const [emailInput, setEmail] = useState(""),
@@ -10,6 +12,7 @@ function Login(props) {
     axios
       .post("/api/login", { email: emailInput, password: passwordInput })
       .then((response) => {
+        props.getCustomer(response.data);
         props.history.push("/");
       })
       .catch((err) => console.log(err));
@@ -36,4 +39,4 @@ function Login(props) {
   );
 }
 
-export default Login;
+export default connect(null, {getCustomer})(Login);
