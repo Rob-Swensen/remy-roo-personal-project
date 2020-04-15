@@ -10,7 +10,7 @@ function Nav(props) {
   const handleLogout = () => {
     axios.get("/api/logout")
     .then(() => {
-      this.props.logoutCustomer();
+    props.logoutCustomer();
     })
     .catch(err => console.log(err))
   };

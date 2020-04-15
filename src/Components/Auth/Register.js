@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { connect } from "react-redux";
+import { getCustomer } from "../../redux/customerReducer";
 
 function Register(props) {
   const [emailInput, setEmail] = useState(""),
@@ -16,7 +18,7 @@ function Register(props) {
         last_name: lastNameInput,
       })
       .then((response) => {
-          console.log(response.data)
+        props.getCustomer(response.data);
         props.history.push("/");
       })
       .catch((err) => console.log(err));
@@ -47,4 +49,4 @@ function Register(props) {
   );
 }
 
-export default Register;
+export default connect(null, { getCustomer })(Register);

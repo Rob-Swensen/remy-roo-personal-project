@@ -25,13 +25,14 @@ module.exports = {
     let sessionCustomer = {...newUser[0], ...customerCart[0]};
 
     req.session.user = sessionCustomer;
+    console.log(req.session.user)
     res.status(200).send(req.session.user);
   },
   login: async (req, res) => {
     const { email, password } = req.body;
     const db = req.app.get("db");
 
-    let user = await db.auth.check_email(email);
+    let user = await db.auth.login_check_email(email);
     if (!user[0]) {
       return res.status(400).send("E-mail does not exist");
     }
