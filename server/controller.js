@@ -9,10 +9,21 @@ module.exports = {
     getProduct: (req, res) => {
         const db = req.app.get('db');
         const {product_id} = req.params;
-        console.log(req.params)
 
         db.products.get_product(product_id)
         .then(product => res.status(200).send(product))
+        .catch(err => res.status(500).send(err))
+    },
+    addToCart: (req, res) => {
+        const db = req.app.get('db');
+        const {cart_id} = req.params;
+        const {product_id} = req.body;
+
+        console.log(req.params)
+        console.log(req.body)
+
+        db.cart.add_to_cart(cart_id, product_id)
+        .then(cart => res.status(200).send(cart))
         .catch(err => res.status(500).send(err))
     }
 }

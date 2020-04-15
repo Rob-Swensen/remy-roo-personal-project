@@ -5,5 +5,5 @@ INSERT INTO cart_products_join (
 ) VALUES (
     $1,
     $2,
-    $3
-) WHERE 
+    1
+);

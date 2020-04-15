@@ -39,3 +39,4 @@ app.get("/api/logout", authCtrl.logout);
 
 app.get('/api/products', ctrl.getProducts);
 app.get('/api/product/:product_id', ctrl.getProduct);
+app.post('/api/cart/:cart_id', ctrl.addToCart);
