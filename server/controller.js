@@ -19,10 +19,15 @@ module.exports = {
         const {cart_id} = req.params;
         const {product_id} = req.body;
 
-        console.log(req.params)
-        console.log(req.body)
-
         db.cart.add_to_cart(cart_id, product_id)
+        .then(cart => res.status(200).send(cart))
+        .catch(err => res.status(500).send(err))
+    },
+    getCart: (req, res) => {
+        const db = req.app.get('db');
+        const {cart_id} = req.params;
+
+        db.cart.get_cart(cart_id)
         .then(cart => res.status(200).send(cart))
         .catch(err => res.status(500).send(err))
     }
