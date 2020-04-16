@@ -18,10 +18,22 @@ function Nav(props) {
   const { first_name } = props;
   return first_name ? (
     <div className='nav-bar'>
+      <Link to='/products'>
+        <p>Products</p>
+      </Link>
+      <Link to='/cart'>
+        <p>Cart</p>
+      </Link>
       <p onClick={handleLogout}>Logout</p>
     </div>
   ) : (
     <div className='nav-bar'>
+       <Link to='/products'>
+        <p>Products</p>
+      </Link>
+      <Link to='/cart'>
+        <p>Cart</p>
+      </Link>
       <Link to='/login'>
         <p>Login</p>
       </Link>

@@ -6,7 +6,6 @@ import "./reset.css";
 import "./App.scss";
 
 function App(props) {
-  console.log(props)
   return (
     <div className="App">
       {props.location.pathname === "/login" || props.location.pathname === "/register" ? (

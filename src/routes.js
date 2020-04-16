@@ -9,6 +9,7 @@ import Orders from "./Components/Orders/Orders";
 import Product from "./Components/Product/Product";
 import Products from "./Components/Products/Products";
 import PageNotFound from "./Components/PageNotFound";
+import Checkout from "./Components/Checkout/Checkout";
 
 export default (
   <Switch>
@@ -20,6 +21,7 @@ export default (
     <Route path="/cart" component={Cart} />
     <Route path="/orders" component={Orders} />
     <Route path="/form" component={Form} />
+    <Route path="/checkout" component={Checkout} />
     <Route component={PageNotFound} />
   </Switch>
 );
