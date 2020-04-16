@@ -10,7 +10,13 @@ function Cart(props) {
     axios.get(`/api/cart/${cart_id}`).then((response) => {
       setCartArray(response.data);
     });
-  }, []);
+  }, [cartArray]);
+
+
+  const handleRemoveItem = (product_id) => {
+      const {cart_id} = props;
+      axios.delete(`/api/cart/${cart_id}/${product_id}`)
+  }
 
   let mappedCartArray = cartArray.map((product, index) => (
       <div key={index} className='cart-container'>
@@ -18,6 +24,7 @@ function Cart(props) {
           <p>{product.name}</p>
           <p>{product.description}</p>
           <p>${product.price}</p>
+          <button onClick={() => handleRemoveItem(product.product_id)}>Remove Item</button>
       </div>
   ))
 

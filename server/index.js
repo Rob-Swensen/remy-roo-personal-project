@@ -44,3 +44,4 @@ app.get('/api/product/:product_id', ctrl.getProduct);
 
 app.post('/api/cart/:cart_id', ctrl.addToCart);
 app.get('/api/cart/:cart_id', ctrl.getCart);
+app.delete('/api/cart/:cart_id/:product_id', ctrl.deleteCartItem);
