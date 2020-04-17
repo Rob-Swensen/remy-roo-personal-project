@@ -1,3 +1,5 @@
+const stripe = require("stripe")(process.env.STRIPE_SECRET);
+
 module.exports = {
   getProducts: (req, res) => {
     const db = req.app.get("db");
@@ -54,8 +56,35 @@ module.exports = {
     const db = req.app.get("db");
     const { cart_id } = req.params;
 
-    db.cart.cart_total(cart_id)
-    .then(price => res.status(200).send(price))
-    .catch((err) => res.status(500).send(err))
-  }
+    db.cart
+      .cart_total(cart_id)
+      .then((price) => res.status(200).send(price))
+      .catch((err) => res.status(500).send(err));
+  },
+  pay: (req, res) => {
+    const db = req.app.get("db");
+    const {
+      token: { id },
+      amount,
+    } = req.body;
+    console.log(id, amount, stripe);
+    stripe.charges.create(
+      {
+        amount: amount,
+        currency: "usd",
+        source: id,
+        description: "Test Charge",
+      },
+      (err, charge) => {
+        if (err) {
+          console.log(err);
+          return res.status(500).send(err);
+        } else {
+          console.log("Successful payment", charge);
+          //this is where you would do something with that purchase (i.e. store that information to your db)
+          return res.status(200).send(charge);
+        }
+      }
+    );
+  },
 };

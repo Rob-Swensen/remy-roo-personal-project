@@ -46,3 +46,7 @@ app.post('/api/cart/:cart_id', ctrl.addToCart);
 app.get('/api/cart/:cart_id', ctrl.getCart);
 app.delete('/api/cart/:cart_id/:product_id', ctrl.deleteCartItem);
 app.get('/api/subtotal/:cart_id', ctrl.getSubtotal);
+
+//Payment Endpoint
+
+app.post('/api/payment', ctrl.pay)

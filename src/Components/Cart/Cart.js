@@ -15,7 +15,6 @@ function Cart(props) {
     axios.get(`/api/cart/${cart_id}`).then((response) => {
       setCartArray(response.data);
       axios.get(`/api/subtotal/${cart_id}`).then((response) => {
-        console.log(response.data);
         setSubtotal(response.data[0]);
       });
     });
@@ -37,13 +36,15 @@ function Cart(props) {
       <button onClick={() => handleRemoveItem(product.product_id)}>
         Remove Item
       </button>
-      <button onClick={() => props.history.push("/checkout")}>Checkout</button>
     </div>
   ));
   return (
     <div>
       <section>
         <p>Subtotal: ${subtotal.sum}</p>
+        <button onClick={() => props.history.push("/checkout")}>
+          Checkout
+        </button>
       </section>
       {mappedCartArray}
     </div>
