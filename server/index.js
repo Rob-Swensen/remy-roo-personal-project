@@ -39,6 +39,7 @@ app.get("/api/logout", authCtrl.logout);
 
 app.get('/api/products', ctrl.getProducts);
 app.get('/api/product/:product_id', ctrl.getProduct);
+app.post('/api/products', ctrl.addProduct);
 
 //Cart Endpoints
 
@@ -49,4 +50,4 @@ app.get('/api/subtotal/:cart_id', ctrl.getSubtotal);
 
 //Payment Endpoint
 
-app.post('/api/payment', ctrl.pay)
+// app.post('/api/payment', ctrl.pay)

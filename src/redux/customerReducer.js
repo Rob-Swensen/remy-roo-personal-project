@@ -2,17 +2,18 @@ const initialState = {
     customer_id: '',
     first_name: '',
     last_name: '',
-    cart_id: 0
+    cart_id: 0,
+    is_admin: false
 };
 
 const GET_CUSTOMER = 'GET_CUSTOMER';
 const LOGOUT_CUSTOMER = 'LOGOUT_CUSTOMER';
 
 export function getCustomer(customerInfo){
-    const {customer_id, first_name, last_name, cart_id} = customerInfo;
+    const {customer_id, first_name, last_name, cart_id, is_admin} = customerInfo;
     return{
         type: GET_CUSTOMER,
-        payload: {customer_id, first_name, last_name, cart_id}
+        payload: {customer_id, first_name, last_name, cart_id, is_admin}
     };
 }
 
@@ -34,7 +35,9 @@ export default function reducer(state = initialState, action){
                 customer_id: payload.customer_id,
                 first_name: payload.first_name,
                 last_name: payload.last_name,
-                cart_id: payload.cart_id
+                cart_id: payload.cart_id,
+                is_admin: payload.is_admin
+
             };
         case LOGOUT_CUSTOMER:
             return {
