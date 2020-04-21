@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
@@ -16,6 +16,7 @@ function Sidebar(props) {
   };
 
   const [sidebarClass, setSidebarClass] = useState(props.sidebar);
+  
 
   const closeHandler = () => {
     setSidebarClass("sidebar close");
@@ -24,46 +25,53 @@ function Sidebar(props) {
     }, 1000);
   };
 
+    window.onclick = function(event){
+      let modal = document.querySelector('#sidebar')
+      let hamburger = document.querySelector('.menu-icon')
+      console.log(hamburger)
+      if(event.target !== modal && event.target !== hamburger){
+        setSidebarClass("sidebar close");
+        setTimeout(() => {
+          props.close();
+        }, 1000);
+      }
+    }
+
+
   const { first_name, is_admin } = props;
   return first_name ? (
-    <div className={sidebarClass}>
-      <p className="close-sidebar" onClick={closeHandler}>
-        X
-      </p>
+    <div id='sidebar' className={sidebarClass}>
       <div>
         <Link to="/products">
-          <p>Products</p>
+          <p onClick={closeHandler}>Products</p>
         </Link>
         <Link to="/cart">
-          <p>Cart</p>
+          <p onClick={closeHandler}>Cart</p>
         </Link>
         <p onClick={handleLogout}>Logout</p>
         <span>
           {is_admin ? (
             <Link to="/form">
-              <p>Add Product</p>
+              <p onClick={closeHandler}>Add Product</p>
             </Link>
           ) : null}
         </span>
       </div>
     </div>
   ) : (
-    <div className={sidebarClass}>
-      <p className="close-sidebar" onClick={closeHandler}>
-        X
-      </p>
+    <div id='sidebar' className={sidebarClass}>
       <div>
         <Link to="/products">
-          <p>Products</p>
+          <p onClick={closeHandler}>Products</p>
         </Link>
         <Link to="/cart">
-          <p>Cart</p>
+          <p onClick={closeHandler}>Cart</p>
         </Link>
         <Link to="/login">
-          <p>Login</p>
+          <p onClick={closeHandler}>Login</p>
         </Link>
         <Link to="/register">
-          <p>Register</p>
+          <p onClick={closeHandler}>Register</p>
         </Link>
       </div>
     </div>

@@ -4,9 +4,12 @@ import { Link } from "react-router-dom";
 import logo from "./primary_logo.png";
 import menuIcon from "./menu_icon.png";
 
+
+
 function Nav(props) {
 
 const [openSidebar, setOpenSidebar] = useState(false)
+
 
 const toggleSidebar = () => {
   if(!openSidebar){
@@ -16,9 +19,10 @@ const toggleSidebar = () => {
   }
 }
 
+
 let sideBar 
 if (openSidebar){
-  sideBar = <Sidebar close={toggleSidebar} sidebar={"sidebar"}/>
+  sideBar = <Sidebar visibility={openSidebar} close={toggleSidebar} sidebar={"sidebar"}/>
 }
 
 console.log(openSidebar)
