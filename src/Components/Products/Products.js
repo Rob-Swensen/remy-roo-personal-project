@@ -11,8 +11,6 @@ function Products(props) {
     });
   }, []);
 
-  console.log(productsArray);
-  console.log(props);
 
   let mappedArray = productsArray.map((product, index) => {return(
 <div

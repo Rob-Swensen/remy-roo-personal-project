@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
@@ -6,7 +6,6 @@ import { logoutCustomer } from "../../redux/customerReducer";
 import "./Nav.scss";
 
 function Sidebar(props) {
-
   const handleLogout = () => {
     axios
       .get("/api/logout")
@@ -16,12 +15,22 @@ function Sidebar(props) {
       .catch((err) => console.log(err));
   };
 
+  const [sidebarClass, setSidebarClass] = useState(props.sidebar);
 
+  const closeHandler = () => {
+    setSidebarClass("sidebar close");
+    setTimeout(() => {
+      props.close();
+    }, 1000);
+  };
 
   const { first_name, is_admin } = props;
   return first_name ? (
-    <div className="sidebar-main">
-      <div className="sidebar">
+    <div className={sidebarClass}>
+      <p className="close-sidebar" onClick={closeHandler}>
+        X
+      </p>
+      <div>
         <Link to="/products">
           <p>Products</p>
         </Link>
@@ -39,8 +48,11 @@ function Sidebar(props) {
       </div>
     </div>
   ) : (
-    <div className="nav-bar">
-      <div className="sidebar">
+    <div className={sidebarClass}>
+      <p className="close-sidebar" onClick={closeHandler}>
+        X
+      </p>
+      <div>
         <Link to="/products">
           <p>Products</p>
         </Link>
