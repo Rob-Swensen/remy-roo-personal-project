@@ -18,7 +18,7 @@ function Products(props) {
       className="product-container"
       onClick={() => props.history.push(`/product/${product.product_id}`)}
     >
-      <img className="product-image" src={product.image} alt={product.name} />
+      <img className="products-image" src={product.image} alt={product.name} />
       <div className='product-text-container'>
         <p>{product.name}</p>
         <p>{product.description}</p>

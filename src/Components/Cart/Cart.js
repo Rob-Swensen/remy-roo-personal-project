@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "./Cart.scss";
 import { connect } from "react-redux";
 
 function Cart(props) {
@@ -28,19 +29,24 @@ function Cart(props) {
   };
 
   let mappedCartArray = cartArray.map((product, index) => (
-    <div key={index} className="cart-container">
-      <img src={product.image} alt={product.name} />
-      <p>{product.name}</p>
-      <p>{product.description}</p>
-      <p>${product.price}</p>
-      <button onClick={() => handleRemoveItem(product.product_id)}>
-        Remove Item
-      </button>
+    <div key={index} className="cart-item-container" >
+      <img className="cart-item-image" src={product.image} alt={product.name} />
+      <section className="cart-item-details">
+        <p className="cart-item-name">{product.name}</p>
+        <p>{product.description}</p>
+        <p>${product.price}</p>
+        <button
+          className="remove-item-button"
+          onClick={() => handleRemoveItem(product.product_id)}
+        >
+          Remove Item
+        </button>
+      </section>
     </div>
   ));
   return (
-    <div>
-      <section>
+    <div className="main-cart-container">
+      <section className="cart-details">
         <p>Subtotal: ${subtotal.sum}</p>
         <button onClick={() => props.history.push("/checkout")}>
           Checkout

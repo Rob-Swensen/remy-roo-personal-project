@@ -1,0 +1,24 @@
+@import '../../styles/variables';
+
+.login-page {
+    background-color: $authBackgroundColor;
+    height: 100vh;
+    display: flex;
+    justify-content: center;;
+    align-items: center;
+    padding: 20px;
+}
+
+.login-card {
+    width: 80vw;
+    height: 300px;
+    background-color: #b2c4ce;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+
+

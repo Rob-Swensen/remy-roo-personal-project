@@ -5,8 +5,7 @@ import { connect } from "react-redux";
 
 function Product(props) {
   const [productObj, setProductObj] = useState({});
-  
-  
+
   useEffect(() => {
     const { productId } = props.match.params;
     axios.get(`/api/product/${productId}`).then((response) => {
@@ -15,20 +14,26 @@ function Product(props) {
   });
 
   const handleAddToCart = (cart_id) => {
-     const {product_id} = productObj;
-     axios.post(`/api/cart/${cart_id}`, {product_id})
-   };
+    const { product_id } = productObj;
+    axios.post(`/api/cart/${cart_id}`, { product_id });
+  };
 
   return (
-    <div className="product-card">
-      <img
-        className="product-image"
-        src={productObj.image}
-        alt={productObj.name}
-      />
-      <p>{productObj.description}</p>
-      <p>${productObj.price}</p>
-      <button onClick={() => handleAddToCart(props.cart_id)}>Add To Cart</button>
+    <div className="product-main">
+      <div className="product-card">
+        <img
+          className="product-image"
+          src={productObj.image}
+          alt={productObj.name}
+        />
+        <div className='button-price-description'>
+          <p className='price'>${productObj.price}</p>
+          <button onClick={() => handleAddToCart(props.cart_id)} className="add-cart-button">
+            Add To Cart
+          </button>
+          <p>{productObj.description}</p>
+        </div>
+      </div>
     </div>
   );
 }

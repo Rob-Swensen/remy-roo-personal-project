@@ -25,7 +25,6 @@ if (openSidebar){
   sideBar = <Sidebar visibility={openSidebar} close={toggleSidebar} sidebar={"sidebar"}/>
 }
 
-console.log(openSidebar)
   return (
     <div className='nav-bar'>
       <Link to="/">

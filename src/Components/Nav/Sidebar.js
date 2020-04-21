@@ -28,7 +28,6 @@ function Sidebar(props) {
     window.onclick = function(event){
       let modal = document.querySelector('#sidebar')
       let hamburger = document.querySelector('.menu-icon')
-      console.log(hamburger)
       if(event.target !== modal && event.target !== hamburger){
         setSidebarClass("sidebar close");
         setTimeout(() => {
@@ -41,7 +40,7 @@ function Sidebar(props) {
   const { first_name, is_admin } = props;
   return first_name ? (
     <div id='sidebar' className={sidebarClass}>
-      <div>
+      <div className='link-container'>
         <Link to="/products">
           <p onClick={closeHandler}>Products</p>
         </Link>
@@ -60,7 +59,7 @@ function Sidebar(props) {
     </div>
   ) : (
     <div id='sidebar' className={sidebarClass}>
-      <div>
+      <div className='link-container'>
         <Link to="/products">
           <p onClick={closeHandler}>Products</p>
         </Link>

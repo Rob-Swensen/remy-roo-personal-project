@@ -1,0 +1,63 @@
+@import '../../styles/variables';
+
+.main-cart-container {
+  padding-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Open Sans", sans-serif;
+  font-family: "Montserrat", sans-serif;
+}
+
+.cart-details {
+    padding: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cart-details p {
+    padding: 15px;
+    font-weight: 700;
+}
+
+.cart-details button {
+    width: 150px;
+    height: 50px;
+    color: white;
+    background-color: $buttonColor;
+    border-radius: 20px;
+    border: none;
+    font-family: "Open Sans", sans-serif;
+    font-family: "Montserrat", sans-serif;
+}
+
+.cart-item-container {
+    width: 90%;
+  margin: 10px;
+  padding: 10px;
+  display: flex;
+  position: relative;
+}
+
+.cart-item-image {
+  height: 100px;
+  width: 100px;
+  margin-right: 10px;
+}
+
+.cart-item-name {
+  font-weight: 700;
+}
+
+.remove-item-button {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    background-color: #b2969a;
+    font-family: "Open Sans", sans-serif;
+    font-family: "Montserrat", sans-serif;
+}

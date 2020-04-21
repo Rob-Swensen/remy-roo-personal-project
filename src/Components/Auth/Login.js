@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getCustomer } from "../../redux/customerReducer";
+import './Login.scss';
 
 function Login(props) {
   const [emailInput, setEmail] = useState(""),
@@ -19,24 +20,26 @@ function Login(props) {
   };
 
   return (
-    <div>
-      <input
-        onChange={(e) => setEmail(e.target.value)}
-        value={emailInput}
-        placeholder="email"
-      />
-      <input
-        onChange={(e) => setPassword(e.target.value)}
-        value={passwordInput}
-        placeholder="password"
-        type="password"
-      />
-      <button onClick={handleLogin}>Login</button>
-      <Link to="/register">
-        <p>Create an Account</p>
-      </Link>
+    <div className="login-page">
+      <section className="login-card">
+        <input
+          onChange={(e) => setEmail(e.target.value)}
+          value={emailInput}
+          placeholder="email"
+        />
+        <input
+          onChange={(e) => setPassword(e.target.value)}
+          value={passwordInput}
+          placeholder="password"
+          type="password"
+        />
+        <button onClick={handleLogin}>Login</button>
+        <Link to="/register">
+          <p>Create an Account</p>
+        </Link>
+      </section>
     </div>
   );
 }
 
-export default connect(null, {getCustomer})(Login);
+export default connect(null, { getCustomer })(Login);
