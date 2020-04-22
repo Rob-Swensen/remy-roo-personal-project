@@ -7,12 +7,12 @@
     justify-content: center;
     width: 100vw;
     box-sizing: border-box;
+    padding-top: 100px;
 }
 
 .product-container {
     margin: 10px;
     width: 40vw;
-    margin-top: 75px;
     font-family: "Open Sans", sans-serif;
     font-family: "Montserrat", sans-serif;
 }
@@ -24,4 +24,13 @@
 
 .product-text-container {
     margin: 5px;
+}
+
+.product-text-container p {
+    margin: 5px;
+}
+
+.products-bold-text {
+    font-weight: 700;
+    font-size: 18px;
 }

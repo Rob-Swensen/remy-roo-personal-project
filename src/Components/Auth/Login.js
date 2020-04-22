@@ -3,7 +3,8 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getCustomer } from "../../redux/customerReducer";
-import './Login.scss';
+import "./Login.scss";
+import backgroundImage from "./background_logo.png";
 
 function Login(props) {
   const [emailInput, setEmail] = useState(""),
@@ -20,17 +21,15 @@ function Login(props) {
   };
 
   return (
-    <div className="login-page">
+    <div className="auth-page">
+      <img className='auth-background-img' src={backgroundImage} alt='company logo'/>
       <section className="login-card">
-        <input
-          onChange={(e) => setEmail(e.target.value)}
-          value={emailInput}
-          placeholder="email"
-        />
+        <p>Email:</p>
+        <input onChange={(e) => setEmail(e.target.value)} value={emailInput} />
+        <p>Password:</p>
         <input
           onChange={(e) => setPassword(e.target.value)}
           value={passwordInput}
-          placeholder="password"
           type="password"
         />
         <button onClick={handleLogin}>Login</button>

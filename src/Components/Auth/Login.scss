@@ -1,24 +1,56 @@
 @import '../../styles/variables';
 
-.login-page {
-    background-color: $authBackgroundColor;
+.auth-page {
     height: 100vh;
     display: flex;
     justify-content: center;;
     align-items: center;
     padding: 20px;
+    font-family: "Open Sans", sans-serif;
+    font-family: "Montserrat", sans-serif;
 }
 
 .login-card {
-    width: 80vw;
-    height: 300px;
-    background-color: #b2c4ce;
-    border-radius: 50px;
+    height: 250px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
 }
 
+.auth-page button {
+    margin-top: 20px;
+    width: 150px;
+    height: 50px;
+    border: none;
+    border-radius: 20px;
+    font-family: "Open Sans", sans-serif;
+    font-family: "Montserrat", sans-serif;
+    background-color: $buttonColor;
+    color: white;
+}
+
+.login-card input {
+    border: none;
+    height: 30px;
+    border-radius: 15px;
+    background-color: #b2c4ce;
+    font-size: 18px;
+    font-family: "Open Sans", sans-serif;
+    font-family: "Montserrat", sans-serif;
+    outline: none;
+}
+
+.auth-page a {
+    text-decoration: none;
+}
+
+.auth-background-img {
+    width: 100vw;
+    height: 50vh;
+    opacity: 25%;
+    position: absolute;
+    z-index: -1;
+}
 
 

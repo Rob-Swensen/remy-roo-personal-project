@@ -8,15 +8,8 @@ import "./App.scss";
 function App(props) {
   return (
     <div className="App">
-      {props.location.pathname === "/login" ||
-      props.location.pathname === "/register" ? (
-        <>{routes}</>
-      ) : (
-        <>
-          <Nav />
-          {routes}
-        </>
-      )}
+      <Nav />
+      {routes}
     </div>
   );
 }
