@@ -25,7 +25,6 @@ function Products(props) {
         />
         <div className="product-text-container">
           <p className="products-bold-text">{product.name}</p>
-          <p>{product.description}</p>
           <p className="products-bold-text">${product.price}</p>
         </div>
       </div>

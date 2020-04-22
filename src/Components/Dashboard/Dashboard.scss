@@ -1,0 +1,32 @@
+@import '../../styles/variables';
+
+.dashboard-page {
+    padding-top: 50px;
+}
+
+.text-section {
+    height: 30vh;
+    @include center-text;
+    text-align: center;
+    font-family: "Open Sans", sans-serif;
+    font-family: "Montserrat", sans-serif;
+    font-size: 35px;
+}
+
+.text-section p {
+    position: absolute;
+}
+
+.dashboard-background-img {
+    z-index: -1;
+    height: 30vh;
+    width: 80%;
+    opacity: 50%;
+    object-fit: cover;
+}
+
+.dashboard-img {
+    width: 100%;
+    height: 60vh;
+    object-fit: cover;
+}
