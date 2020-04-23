@@ -39,9 +39,14 @@
 }
 
 .cart-item-image {
+  box-sizing: border-box;
   height: 100px;
   width: 100px;
   margin-right: 10px;
+}
+
+.cart-item-details {
+  box-sizing: border-box;
 }
 
 .cart-item-name {

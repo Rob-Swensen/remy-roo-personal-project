@@ -68,4 +68,13 @@ module.exports = {
       .then(res.sendStatus(200))
       .catch((err) => console.log(err));
   },
+  getCartCount: (req, res) => {
+    const db = req.app.get("db");
+    const { cart_id } = req.params;
+
+    db.cart
+      .cart_count(cart_id)
+      .then((count) => res.status(200).send(count))
+      .catch((err) => res.status(500).send(err));
+  },
 };
