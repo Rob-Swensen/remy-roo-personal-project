@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
@@ -16,7 +16,6 @@ function Sidebar(props) {
   };
 
   const [sidebarClass, setSidebarClass] = useState(props.sidebar);
-  
 
   const closeHandler = () => {
     setSidebarClass("sidebar close");
@@ -25,22 +24,21 @@ function Sidebar(props) {
     }, 1000);
   };
 
-    window.onclick = function(event){
-      let modal = document.querySelector('#sidebar')
-      let hamburger = document.querySelector('.menu-icon')
-      if(event.target !== modal && event.target !== hamburger){
-        setSidebarClass("sidebar close");
-        setTimeout(() => {
-          props.close();
-        }, 1000);
-      }
+  window.onclick = function (event) {
+    let modal = document.querySelector("#sidebar");
+    let hamburger = document.querySelector(".menu-icon");
+    if (event.target !== modal && event.target !== hamburger) {
+      setSidebarClass("sidebar close");
+      setTimeout(() => {
+        props.close();
+      }, 1000);
     }
-
+  };
 
   const { first_name, is_admin } = props;
   return first_name ? (
-    <div id='sidebar' className={sidebarClass}>
-      <div className='link-container'>
+    <div id="sidebar" className={sidebarClass}>
+      <div className="link-container">
         <Link to="/products">
           <p onClick={closeHandler}>Products</p>
         </Link>
@@ -48,6 +46,7 @@ function Sidebar(props) {
           <p onClick={closeHandler}>Cart</p>
         </Link>
         <p onClick={handleLogout}>Logout</p>
+        <p>Contact</p>
         <span>
           {is_admin ? (
             <Link to="/form">
@@ -58,8 +57,8 @@ function Sidebar(props) {
       </div>
     </div>
   ) : (
-    <div id='sidebar' className={sidebarClass}>
-      <div className='link-container'>
+    <div id="sidebar" className={sidebarClass}>
+      <div className="link-container">
         <Link to="/products">
           <p onClick={closeHandler}>Products</p>
         </Link>
@@ -71,6 +70,9 @@ function Sidebar(props) {
         </Link>
         <Link to="/register">
           <p onClick={closeHandler}>Register</p>
+        </Link>
+        <Link>
+          <p>Contact</p>
         </Link>
       </div>
     </div>
