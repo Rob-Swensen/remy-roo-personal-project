@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Cart.scss";
 import { connect } from "react-redux";
-import {getCartCount} from '../../redux/cartReducer';
+import { getCartCount } from "../../redux/cartReducer";
 
 function Cart(props) {
   const [cartArray, setCartArray] = useState([]);
@@ -28,12 +28,12 @@ function Cart(props) {
       getCartInfo();
     });
     axios.get(`/api/cart-count/${cart_id}`).then((response) => {
-      props.getCartCount(response.data[0].count)
+      props.getCartCount(response.data[0].count);
     });
   };
 
   let mappedCartArray = cartArray.map((product, index) => (
-    <div key={index} className="cart-item-container" >
+    <div key={index} className="cart-item-container">
       <img className="cart-item-image" src={product.image} alt={product.name} />
       <section className="cart-item-details">
         <p className="cart-item-name">{product.name}</p>
@@ -51,6 +51,9 @@ function Cart(props) {
   return (
     <div className="main-cart-container">
       <section className="cart-details">
+        <p className="cart-details-items-count">
+          You have {props.cart_count} item(s) in your cart.
+        </p>
         <p>Subtotal: ${subtotal.sum}</p>
         <button onClick={() => props.history.push("/checkout")}>
           Checkout
@@ -62,9 +65,11 @@ function Cart(props) {
 }
 const mapStateToProps = (reduxState) => {
   const { cart_id } = reduxState.customer;
+  const { cart_count } = reduxState.cartCount;
   return {
     cart_id,
+    cart_count,
   };
 };
 
-export default connect(mapStateToProps, {getCartCount})(Cart);
+export default connect(mapStateToProps, { getCartCount })(Cart);

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { logoutCustomer } from "../../redux/customerReducer";
 import "./Nav.scss";
@@ -11,6 +11,7 @@ function Sidebar(props) {
       .get("/api/logout")
       .then(() => {
         props.logoutCustomer();
+        props.history.push('/')
       })
       .catch((err) => console.log(err));
   };
@@ -89,4 +90,4 @@ const mapStateToProps = (reduxState) => {
   };
 };
 
-export default connect(mapStateToProps, { logoutCustomer })(Sidebar);
+export default connect(mapStateToProps, { logoutCustomer })(withRouter(Sidebar));

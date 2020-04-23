@@ -15,7 +15,6 @@ export default function reducer(state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
     case GET_CART_COUNT:
-      console.log(payload);
       return {
         ...state,
         cart_count: payload,

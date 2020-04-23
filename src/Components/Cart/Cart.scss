@@ -17,7 +17,11 @@
 
 .cart-details p {
     padding: 15px;
-    font-weight: 700;
+    font-weight: bold;
+}
+
+.cart-details-items-count {
+  text-align: center;
 }
 
 .cart-details button {
