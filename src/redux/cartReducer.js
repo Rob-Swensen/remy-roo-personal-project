@@ -7,18 +7,18 @@ const GET_CART_COUNT = "GET_CART_COUNT";
 export function getCartCount(count) {
   return {
     type: GET_CART_COUNT,
-    payload: count
+    payload: count,
   };
 }
-
 
 export default function reducer(state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
     case GET_CART_COUNT:
+      console.log(payload);
       return {
         ...state,
-        cart_count: payload
+        cart_count: payload,
       };
     default:
       return state;

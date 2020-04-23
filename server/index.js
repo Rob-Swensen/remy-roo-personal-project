@@ -40,6 +40,7 @@ app.get("/api/logout", authCtrl.logout);
 app.get('/api/products', ctrl.getProducts);
 app.get('/api/product/:product_id', ctrl.getProduct);
 app.post('/api/products', ctrl.addProduct);
+app.delete('/api/products/:product_id', ctrl.deleteProduct)
 
 //Cart Endpoints
 

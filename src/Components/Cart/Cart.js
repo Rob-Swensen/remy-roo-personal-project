@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./Cart.scss";
 import { connect } from "react-redux";
+import {getCartCount} from '../../redux/cartReducer';
 
 function Cart(props) {
   const [cartArray, setCartArray] = useState([]);
@@ -25,6 +26,9 @@ function Cart(props) {
     const { cart_id } = props;
     axios.delete(`/api/cart/${cart_id}/${product_id}`).then((response) => {
       getCartInfo();
+    });
+    axios.get(`/api/cart-count/${cart_id}`).then((response) => {
+      props.getCartCount(response.data[0].count)
     });
   };
 
@@ -63,4 +67,4 @@ const mapStateToProps = (reduxState) => {
   };
 };
 
-export default connect(mapStateToProps)(Cart);
+export default connect(mapStateToProps, {getCartCount})(Cart);

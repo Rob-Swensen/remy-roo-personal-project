@@ -43,7 +43,6 @@ module.exports = {
   deleteCartItem: (req, res) => {
     const db = req.app.get("db");
     const { cart_id, product_id } = req.params;
-    console.log(req.params);
 
     db.cart
       .delete_cart_item(cart_id, product_id)
@@ -61,10 +60,10 @@ module.exports = {
   },
   addProduct: (req, res) => {
     const db = req.app.get("db");
-    const { name, image, description, price } = req.body;
+    const { name, image, description, price, image_2, image_3 } = req.body;
 
     db.products
-      .create_product(name, image, description, price)
+      .create_product(name, image, description, price, image_2, image_3)
       .then(res.sendStatus(200))
       .catch((err) => console.log(err));
   },
@@ -76,5 +75,15 @@ module.exports = {
       .cart_count(cart_id)
       .then((count) => res.status(200).send(count))
       .catch((err) => res.status(500).send(err));
+  },
+  deleteProduct: (req, res) => {
+    const db = req.app.get("db");
+    const { product_id } = req.params;
+    console.log(req.params);
+
+    db.products
+      .delete_product(product_id)
+      .then(res.sendStatus(200))
+      .catch((err) => console.log(err));
   },
 };

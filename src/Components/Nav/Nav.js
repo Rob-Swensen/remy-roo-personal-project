@@ -14,6 +14,7 @@ function Nav(props) {
   const { cart_id } = props;
   useEffect(() => {
     axios.get(`/api/cart-count/${cart_id}`).then((response) => {
+      console.log(response.data)
       props.getCartCount(response.data[0].count)
     })
     .catch((err) => console.log(err));
