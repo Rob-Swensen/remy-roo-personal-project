@@ -71,7 +71,7 @@ function Sidebar(props) {
         <Link to="/register">
           <p onClick={closeHandler}>Register</p>
         </Link>
-        <Link>
+        <Link to="/contact">
           <p>Contact</p>
         </Link>
       </div>

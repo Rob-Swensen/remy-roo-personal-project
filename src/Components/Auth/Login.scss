@@ -6,8 +6,7 @@
     justify-content: center;;
     align-items: center;
     padding: 20px;
-    font-family: "Open Sans", sans-serif;
-    font-family: "Montserrat", sans-serif;
+    font-family: $fontStyle;
 }
 
 .login-card {
@@ -24,8 +23,7 @@
     height: 50px;
     border: none;
     border-radius: 20px;
-    font-family: "Open Sans", sans-serif;
-    font-family: "Montserrat", sans-serif;
+    font-family: $fontStyle;
     background-color: $buttonColor;
     color: white;
 }
@@ -36,8 +34,7 @@
     border-radius: 15px;
     background-color: #b2c4ce;
     font-size: 18px;
-    font-family: "Open Sans", sans-serif;
-    font-family: "Montserrat", sans-serif;
+    font-family: $fontStyle;
     outline: none;
 }
 

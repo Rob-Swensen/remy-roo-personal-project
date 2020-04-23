@@ -8,8 +8,7 @@
 
 .product-card {
     width: 90%;
-    font-family: "Open Sans", sans-serif;
-    font-family: "Montserrat", sans-serif;
+    font-family: $fontStyle;
 }
 
 
@@ -33,8 +32,7 @@
     color: white;
     background-color: $buttonColor;
     border-radius: 20px;
-    font-family: "Open Sans", sans-serif;
-    font-family: "Montserrat", sans-serif;
+    font-family: $fontStyle;
     border: none;
 }
 

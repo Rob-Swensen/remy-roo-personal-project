@@ -8,8 +8,7 @@
     height: 30vh;
     @include center-text;
     text-align: center;
-    font-family: "Open Sans", sans-serif;
-    font-family: "Montserrat", sans-serif;
+    font-family: $fontStyle;
     font-size: 35px;
     font-weight: 700;
 }

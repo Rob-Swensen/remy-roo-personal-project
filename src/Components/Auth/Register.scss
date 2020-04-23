@@ -1,3 +1,5 @@
+@import "../../styles//variables";
+
 .register-card {
     display: flex;
     flex-direction: column;
@@ -11,14 +13,12 @@
     background-color: #b2c4ce;
     margin: 5px;
     font-size: 18px;
-    font-family: "Open Sans", sans-serif;
-    font-family: "Montserrat", sans-serif;
+    font-family: $fontStyle;
     border: none;
     border-radius: 15px;
     outline: none;
 }
 
 .register-card button {
-    font-family: "Open Sans", sans-serif;
-    font-family: "Montserrat", sans-serif;
+    font-family: $fontStyle;
 }
