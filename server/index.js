@@ -53,4 +53,4 @@ app.put('/api/cart/product-quantity/:cart_id/:product_id', ctrl.updateQty);
 
 //Payment Endpoint
 
-// app.post('/api/payment', ctrl.pay)
+app.post('/api/payment', ctrl.completePayment)

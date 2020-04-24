@@ -3,10 +3,15 @@ import axios from "axios";
 import "./Cart.scss";
 import { connect } from "react-redux";
 import { getCartCount } from "../../redux/cartReducer";
+import StripeCheckout from "react-stripe-checkout";
+import stripe from "../../stripe";
 
 function Cart(props) {
   const [cartArray, setCartArray] = useState([]),
     [subtotal, setSubtotal] = useState(0);
+
+  let amount = subtotal.sum * 100;
+  console.log(amount)
 
   useEffect(() => {
     getCartInfo();
@@ -42,7 +47,16 @@ function Cart(props) {
       .catch((err) => console.log(err));
   };
 
-  console.log(cartArray);
+  const onToken = async (token) => {
+    token.card = void 0;
+
+    await axios
+      .post("/api/payment", { token, amount: amount })
+      .then(() => {
+        alert("Payment Submitted");
+      })
+      .catch((err) => console.log(err));
+  };
 
   let mappedCartArray = cartArray.map((product, index) => (
     <div key={index} className="cart-item-container">
@@ -83,9 +97,14 @@ function Cart(props) {
           You have {props.cart_count} item(s) in your cart.
         </p>
         <p>Subtotal: ${subtotal.sum}</p>
-        <button onClick={() => props.history.push("/checkout")}>
-          Checkout
-        </button>
+        <StripeCheckout
+          label="Checkout"
+          token={onToken}
+          stripeKey={stripe.publicKey}
+          amount={amount}
+          shippingAddress={true}
+          billingAddress={true}
+        />
       </section>
       {mappedCartArray}
     </div>
