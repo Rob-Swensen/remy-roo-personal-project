@@ -5,8 +5,8 @@ import { connect } from "react-redux";
 import { getCartCount } from "../../redux/cartReducer";
 
 function Cart(props) {
-  const [cartArray, setCartArray] = useState([]);
-  const [subtotal, setSubtotal] = useState(0);
+  const [cartArray, setCartArray] = useState([]),
+    [subtotal, setSubtotal] = useState(0);
 
   useEffect(() => {
     getCartInfo();
@@ -32,13 +32,41 @@ function Cart(props) {
     });
   };
 
+  const handleQtyChange = (product_id, quantity) => {
+    const { cart_id } = props;
+    axios
+      .put(`/api/cart/product-quantity/${cart_id}/${product_id}`, { quantity })
+      .then((response) => {
+        getCartInfo();
+      })
+      .catch((err) => console.log(err));
+  };
+
+  console.log(cartArray);
+
   let mappedCartArray = cartArray.map((product, index) => (
     <div key={index} className="cart-item-container">
       <img className="cart-item-image" src={product.image} alt={product.name} />
       <section className="cart-item-details">
         <p className="cart-item-name">{product.name}</p>
-        <p>{product.description}</p>
         <p>${product.price}</p>
+        <p>Qty</p>
+        <select
+          className="qty-selector"
+          defaultValue={product.qty}
+          onChange={(e) => handleQtyChange(product.product_id, e.target.value)}
+        >
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+        </select>
         <button
           className="remove-item-button"
           onClick={() => handleRemoveItem(product.product_id)}

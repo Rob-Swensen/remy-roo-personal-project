@@ -86,4 +86,14 @@ module.exports = {
       .then(res.sendStatus(200))
       .catch((err) => console.log(err));
   },
+  updateQty: (req, res) => {
+    const db = req.app.get("db");
+    const { cart_id, product_id } = req.params;
+    const { quantity } = req.body;
+
+    db.cart
+      .update_qty(quantity, cart_id, product_id)
+      .then(res.sendStatus(200))
+      .catch((err) => console.log(err));
+  },
 };
