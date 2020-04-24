@@ -68,7 +68,7 @@ module.exports = {
     db.products
       .create_product(name, image, description, price, image_2, image_3)
       .then(res.sendStatus(200))
-      .catch((err) => console.log(err));
+      .catch((err) => res.status(500).send(err));
   },
   getCartCount: (req, res) => {
     const db = req.app.get("db");
@@ -87,7 +87,7 @@ module.exports = {
     db.products
       .delete_product(product_id)
       .then(res.sendStatus(200))
-      .catch((err) => console.log(err));
+      .catch((err) => res.status(500).send(err));
   },
   updateQty: (req, res) => {
     const db = req.app.get("db");
@@ -97,11 +97,11 @@ module.exports = {
     db.cart
       .update_qty(quantity, cart_id, product_id)
       .then(res.sendStatus(200))
-      .catch((err) => console.log(err));
+      .catch((err) => res.status(500).send(err));
   },
   completePayment: (req, res) => {
-    const { token, amount } = req.body;
-    console.log(req.body)
+    const { token, amount, cart_id } = req.body;
+    console.log(req.body);
 
     const charge = stripe.charges.create(
       {
@@ -117,5 +117,23 @@ module.exports = {
         res.sendStatus(200);
       }
     );
+  },
+  changePaidStatus: (req, res) => {
+    const db = req.app.get("db");
+    const { cart_id } = req.params;
+
+    db.cart
+      .change_paid_status(cart_id)
+      .then(res.sendStatus(200))
+      .catch((err) => res.status(500).send(err));
+  },
+  getNewCart: (req, res) => {
+    const db = req.app.get("db");
+    const { customer_id } = req.params;
+
+    db.cart
+      .create_cart(customer_id)
+      .then((cart_id) => res.status(200).send(cart_id))
+      .catch((err) => res.status(500).send(err));
   },
 };

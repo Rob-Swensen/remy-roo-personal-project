@@ -1,5 +1,7 @@
 INSERT INTO cart (
-    customer_id
+    customer_id,
+    paid
 ) VALUES (
-    $1
+    $1,
+    false
 )RETURNING cart_id;

@@ -92,3 +92,13 @@
   right: 65px;
   top: 5px;
 }
+
+@media(min-width: 800px){
+  .menu-icon {
+    display: none;
+  }
+  .cart-icon {
+    position: absolute;
+    right: 20px;
+  }
+}

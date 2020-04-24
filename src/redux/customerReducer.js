@@ -8,12 +8,21 @@ const initialState = {
 
 const GET_CUSTOMER = 'GET_CUSTOMER';
 const LOGOUT_CUSTOMER = 'LOGOUT_CUSTOMER';
+const GET_NEW_CART = 'GET_NEW_CART';
 
 export function getCustomer(customerInfo){
     const {customer_id, first_name, last_name, cart_id, is_admin} = customerInfo;
     return{
         type: GET_CUSTOMER,
         payload: {customer_id, first_name, last_name, cart_id, is_admin}
+    };
+}
+
+export function getNewCart(newCart){
+    const {cart_id} = newCart;
+    return{
+        type: GET_NEW_CART,
+        payload: cart_id
     };
 }
 
@@ -42,7 +51,13 @@ export default function reducer(state = initialState, action){
         case LOGOUT_CUSTOMER:
             return {
                 ...initialState
-            }
+            };
+        case GET_NEW_CART:
+            console.log(payload)
+            return {
+                ...state,
+                cart_id: payload
+            };
         default:
             return state;
     }

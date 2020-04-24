@@ -3,6 +3,7 @@ import axios from "axios";
 import "./Cart.scss";
 import { connect } from "react-redux";
 import { getCartCount } from "../../redux/cartReducer";
+import { getNewCart } from "../../redux/customerReducer";
 import StripeCheckout from "react-stripe-checkout";
 import stripe from "../../stripe";
 
@@ -11,7 +12,6 @@ function Cart(props) {
     [subtotal, setSubtotal] = useState(0);
 
   let amount = subtotal.sum * 100;
-  console.log(amount)
 
   useEffect(() => {
     getCartInfo();
@@ -53,7 +53,13 @@ function Cart(props) {
     await axios
       .post("/api/payment", { token, amount: amount })
       .then(() => {
-        alert("Payment Submitted");
+        axios.put(`/api/payment/${props.cart_id}`).then(() =>
+          axios.post(`/api/new_cart/${props.customer_id}`).then((response) => {
+            console.log(response.data)
+            props.getNewCart(response.data[0]);
+            
+          })
+        );
       })
       .catch((err) => console.log(err));
   };
@@ -111,12 +117,16 @@ function Cart(props) {
   );
 }
 const mapStateToProps = (reduxState) => {
-  const { cart_id } = reduxState.customer;
+  const { customer_id, cart_id } = reduxState.customer;
   const { cart_count } = reduxState.cartCount;
   return {
+    customer_id,
     cart_id,
     cart_count,
   };
 };
 
-export default connect(mapStateToProps, { getCartCount })(Cart);
+export default connect(
+  mapStateToProps,
+  { getCartCount, getNewCart }
+)(Cart);

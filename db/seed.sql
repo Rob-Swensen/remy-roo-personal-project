@@ -26,16 +26,16 @@ CREATE TABLE cart_products_join (
     qty INT
 );
 
-CREATE TABLE orders (
-    order_id SERIAL PRIMARY KEY,
-    customer_id INT REFERENCES customer(customer_id)
-);
+-- CREATE TABLE orders (
+--     order_id SERIAL PRIMARY KEY,
+--     customer_id INT REFERENCES customer(customer_id)
+-- );
 
-CREATE TABLE order_products_join (
-    order_id INT REFERENCES orders(order_id),
-    product_id INT REFERENCES products(product_id),
-    qty INT
-);
+-- CREATE TABLE order_products_join (
+--     order_id INT REFERENCES orders(order_id),
+--     product_id INT REFERENCES products(product_id),
+--     qty INT
+-- );
 
 CREATE TABLE review (
     review_id SERIAL PRIMARY KEY,

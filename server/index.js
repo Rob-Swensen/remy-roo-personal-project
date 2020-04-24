@@ -50,7 +50,9 @@ app.delete('/api/cart/:cart_id/:product_id', ctrl.deleteCartItem);
 app.get('/api/subtotal/:cart_id', ctrl.getSubtotal);
 app.get('/api/cart-count/:cart_id', ctrl.getCartCount);
 app.put('/api/cart/product-quantity/:cart_id/:product_id', ctrl.updateQty);
+app.post('/api/new_cart/:customer_id', ctrl.getNewCart);
 
 //Payment Endpoint
 
-app.post('/api/payment', ctrl.completePayment)
+app.post('/api/payment', ctrl.completePayment);
+app.put('/api/payment/:cart_id', ctrl.changePaidStatus)
