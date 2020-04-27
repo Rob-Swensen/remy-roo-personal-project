@@ -6,6 +6,7 @@ import { getCartCount } from "../../redux/cartReducer";
 import { getNewCart } from "../../redux/customerReducer";
 import StripeCheckout from "react-stripe-checkout";
 import stripe from "../../stripe";
+import {withRouter} from 'react-router-dom';
 
 function Cart(props) {
   const [cartArray, setCartArray] = useState([]),
@@ -57,6 +58,7 @@ function Cart(props) {
           axios.post(`/api/new_cart/${props.customer_id}`).then((response) => {
             console.log(response.data)
             props.getNewCart(response.data[0]);
+            props.history.push('/');
             
           })
         );
@@ -108,8 +110,8 @@ function Cart(props) {
           token={onToken}
           stripeKey={stripe.publicKey}
           amount={amount}
-          shippingAddress={true}
-          billingAddress={true}
+          shippingAddress={false}
+          billingAddress={false}
         />
       </section>
       {mappedCartArray}
@@ -129,4 +131,4 @@ const mapStateToProps = (reduxState) => {
 export default connect(
   mapStateToProps,
   { getCartCount, getNewCart }
-)(Cart);
+)(withRouter(Cart));

@@ -55,4 +55,8 @@ app.post('/api/new_cart/:customer_id', ctrl.getNewCart);
 //Payment Endpoint
 
 app.post('/api/payment', ctrl.completePayment);
-app.put('/api/payment/:cart_id', ctrl.changePaidStatus)
+app.put('/api/payment/:cart_id', ctrl.changePaidStatus);
+
+//Orders Endpoint
+
+app.get('/api/orders/:customer_id', ctrl.getOrders)

@@ -1,0 +1,6 @@
+@import '../../styles/variables';
+
+.orders-page {
+    padding-top: 100px;
+    @include flex-container;
+}

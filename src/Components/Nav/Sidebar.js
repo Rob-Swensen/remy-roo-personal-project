@@ -11,7 +11,7 @@ function Sidebar(props) {
       .get("/api/logout")
       .then(() => {
         props.logoutCustomer();
-        props.history.push('/')
+        props.history.push("/");
       })
       .catch((err) => console.log(err));
   };
@@ -45,6 +45,9 @@ function Sidebar(props) {
         </Link>
         <Link to="/cart">
           <p onClick={closeHandler}>Cart</p>
+        </Link>
+        <Link to="/orders">
+          <p>Orders</p>
         </Link>
         <p onClick={handleLogout}>Logout</p>
         <Link to="/contact">
@@ -90,4 +93,6 @@ const mapStateToProps = (reduxState) => {
   };
 };
 
-export default connect(mapStateToProps, { logoutCustomer })(withRouter(Sidebar));
+export default connect(mapStateToProps, { logoutCustomer })(
+  withRouter(Sidebar)
+);

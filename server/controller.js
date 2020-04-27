@@ -100,7 +100,7 @@ module.exports = {
       .catch((err) => res.status(500).send(err));
   },
   completePayment: (req, res) => {
-    const { token, amount, cart_id } = req.body;
+    const { token, amount } = req.body;
     console.log(req.body);
 
     const charge = stripe.charges.create(
@@ -134,6 +134,16 @@ module.exports = {
     db.cart
       .create_cart(customer_id)
       .then((cart_id) => res.status(200).send(cart_id))
+      .catch((err) => res.status(500).send(err));
+  },
+  getOrders: (req, res) => {
+    const db = req.app.get("db");
+    const { customer_id } = req.params;
+    console.log(req.params)
+
+    db.orders
+      .get_orders(customer_id)
+      .then((orders) => res.status(200).send(orders))
       .catch((err) => res.status(500).send(err));
   },
 };
