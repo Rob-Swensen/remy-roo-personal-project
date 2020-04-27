@@ -71,3 +71,13 @@
 .qty-selector {
   font-size: 10;
 }
+
+.checkout {
+  z-index: -1;
+}
+
+@media(min-width: 800px){
+  .cart-item-container {
+    width: 30vw;
+  }
+}

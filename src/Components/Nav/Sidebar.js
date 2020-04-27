@@ -47,7 +47,7 @@ function Sidebar(props) {
           <p onClick={closeHandler}>Cart</p>
         </Link>
         <Link to="/orders">
-          <p>Orders</p>
+          <p onClick={closeHandler}>Orders</p>
         </Link>
         <p onClick={handleLogout}>Logout</p>
         <Link to="/contact">

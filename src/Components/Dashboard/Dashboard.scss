@@ -31,3 +31,27 @@
     height: 60vh;
     object-fit: cover;
 }
+
+@media(min-width: 800px){
+    .desktop-section{
+        display: flex;
+    }
+    .dashboard-img {
+        width: 50vw;
+        object-fit: cover;
+    }
+    .text-section {
+        width: 50vw;
+        height: 490px;
+    }
+    .text-section img {
+        object-fit: contain;
+    } 
+    .dashboard-background-img {
+        height: 100%;
+        object-fit: cover;
+    }
+    .desktop-image-two {
+        float: left;
+    }
+}

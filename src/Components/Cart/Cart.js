@@ -106,6 +106,7 @@ function Cart(props) {
         </p>
         <p>Subtotal: ${subtotal.sum}</p>
         <StripeCheckout
+          className='checkout'
           label="Checkout"
           token={onToken}
           stripeKey={stripe.publicKey}
