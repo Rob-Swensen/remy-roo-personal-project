@@ -24,6 +24,7 @@
 
 .product-text-container {
     margin: 5px;
+    text-align: center;
 }
 
 .product-text-container p {
@@ -33,4 +34,16 @@
 .products-bold-text {
     font-weight: 700;
     font-size: 18px;
+}
+
+@media(min-width: 800px){
+    .main-container {
+        width: 80%;
+        display: flex;
+        justify-content: center;
+    }
+    .product-container {
+        width: 400px;
+        height: 300px;
+    }
 }

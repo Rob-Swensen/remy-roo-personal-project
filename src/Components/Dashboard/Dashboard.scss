@@ -35,10 +35,13 @@
 @media(min-width: 800px){
     .desktop-section{
         display: flex;
+        align-items: center;
+        height: 700px;
     }
     .dashboard-img {
-        width: 50vw;
+        width: 60vw;
         object-fit: cover;
+        height: 100%;
     }
     .text-section {
         width: 50vw;

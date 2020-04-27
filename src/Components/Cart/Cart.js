@@ -6,7 +6,7 @@ import { getCartCount } from "../../redux/cartReducer";
 import { getNewCart } from "../../redux/customerReducer";
 import StripeCheckout from "react-stripe-checkout";
 import stripe from "../../stripe";
-import {withRouter} from 'react-router-dom';
+import { withRouter } from "react-router-dom";
 
 function Cart(props) {
   const [cartArray, setCartArray] = useState([]),
@@ -51,17 +51,29 @@ function Cart(props) {
   const onToken = async (token) => {
     token.card = void 0;
 
+    const timeStamp = () => {
+      var currentDate = new Date();
+      var date = currentDate.getDate();
+      var month = currentDate.getMonth(); 
+      var year = currentDate.getFullYear();
+      var dateString = (month + 1) + "-" + date + "-" + year;
+      return dateString;
+    };
+
     await axios
       .post("/api/payment", { token, amount: amount })
       .then(() => {
-        axios.put(`/api/payment/${props.cart_id}`).then(() =>
-          axios.post(`/api/new_cart/${props.customer_id}`).then((response) => {
-            console.log(response.data)
-            props.getNewCart(response.data[0]);
-            props.history.push('/');
-            
-          })
-        );
+        axios
+          .put(`/api/payment/${props.cart_id}`, { date: timeStamp() })
+          .then(() =>
+            axios
+              .post(`/api/new_cart/${props.customer_id}`)
+              .then((response) => {
+                console.log(response.data);
+                props.getNewCart(response.data[0]);
+                props.history.push("/");
+              })
+          );
       })
       .catch((err) => console.log(err));
   };
@@ -100,13 +112,14 @@ function Cart(props) {
   ));
   return (
     <div className="main-cart-container">
+      {mappedCartArray}
       <section className="cart-details">
         <p className="cart-details-items-count">
           You have {props.cart_count} item(s) in your cart.
         </p>
         <p>Subtotal: ${subtotal.sum}</p>
         <StripeCheckout
-          className='checkout'
+          className="checkout"
           label="Checkout"
           token={onToken}
           stripeKey={stripe.publicKey}
@@ -115,7 +128,6 @@ function Cart(props) {
           billingAddress={false}
         />
       </section>
-      {mappedCartArray}
     </div>
   );
 }
@@ -129,7 +141,6 @@ const mapStateToProps = (reduxState) => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { getCartCount, getNewCart }
-)(withRouter(Cart));
+export default connect(mapStateToProps, { getCartCount, getNewCart })(
+  withRouter(Cart)
+);

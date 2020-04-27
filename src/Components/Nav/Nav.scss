@@ -10,6 +10,7 @@
   padding: 10px;
   border-bottom: 0.5px solid black;
   position: fixed;
+  z-index: 10;
 }
 
 .header-links {
@@ -50,6 +51,7 @@
   text-align: right;
   animation: slide 0.75s forwards;
   box-sizing: border-box;
+  z-index: 10;
 }
 
 .sidebar.close {

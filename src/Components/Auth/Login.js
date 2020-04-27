@@ -17,7 +17,7 @@ function Login(props) {
         props.getCustomer(response.data);
         props.history.push("/");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => alert(err));
   };
 
   return (

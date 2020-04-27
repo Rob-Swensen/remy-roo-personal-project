@@ -121,9 +121,11 @@ module.exports = {
   changePaidStatus: (req, res) => {
     const db = req.app.get("db");
     const { cart_id } = req.params;
+    const { date } = req.body;
+    console.log(req.body);
 
     db.cart
-      .change_paid_status(cart_id)
+      .change_paid_status(cart_id, date)
       .then(res.sendStatus(200))
       .catch((err) => res.status(500).send(err));
   },
@@ -139,7 +141,7 @@ module.exports = {
   getOrders: (req, res) => {
     const db = req.app.get("db");
     const { customer_id } = req.params;
-    console.log(req.params)
+    console.log(req.params);
 
     db.orders
       .get_orders(customer_id)

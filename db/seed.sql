@@ -18,7 +18,8 @@ CREATE TABLE products (
 CREATE TABLE cart (
     cart_id SERIAL PRIMARY KEY,
     customer_id INT REFERENCES customer(customer_id),
-    paid BOOLEAN
+    paid BOOLEAN,
+    date VARCHAR(100)
 );
 
 CREATE TABLE cart_products_join (

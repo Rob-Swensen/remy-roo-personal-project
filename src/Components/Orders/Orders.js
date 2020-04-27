@@ -8,9 +8,11 @@ function Orders(props) {
 
   useEffect(() => {
     axios.get(`/api/orders/${props.customer_id}`).then((response) => {
+      console.log(response.data)
       setOrdersArray(response.data);
     });
   }, []);
+
 
   let mappedOrders = ordersArray.map((product, index) => {
     return (
@@ -19,6 +21,7 @@ function Orders(props) {
         className="product-container"
         onClick={() => props.history.push(`/product/${product.product_id}`)}
       >
+        <p>{product.date}</p>
         <img
           className="products-image"
           src={product.image}
