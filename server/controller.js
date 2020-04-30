@@ -1,5 +1,6 @@
-const { SECRET_KEY } = process.env,
-  stripe = require("stripe")(SECRET_KEY);
+const { SECRET_KEY, EMAIL, PASSWORD } = process.env,
+  stripe = require("stripe")(SECRET_KEY),
+  nodemailer = require("nodemailer");
 
 module.exports = {
   getProducts: (req, res) => {
@@ -147,5 +148,41 @@ module.exports = {
       .get_orders(customer_id)
       .then((orders) => res.status(200).send(orders))
       .catch((err) => res.status(500).send(err));
+  },
+  email: async (req, res) => {
+    const { email } = req.body;
+    console.log(req.body)
+    try {
+      let transporter = nodemailer.createTransport({
+        host: "smtp.mail.yahoo.com",
+        port: 465,
+        service: "yahoo",
+        secure: false,
+        auth: {
+          user: EMAIL,
+          pass: PASSWORD,
+        },
+      });
+      let info = await transporter.sendMail(
+        {
+          from: `Remy + Roo <${EMAIL}>`,
+          to: email,
+          subject: "Welcome to Remy + Roo",
+          text:
+            "Thank you for joining Remy + Roo. Please watch your email for new products and deals",
+          html: `<h2>Thank you for joining Remy + Roo. </h2> </br> <p>Please watch your email for new products and deals.</p>`,
+          attachments: [],
+        },
+        (err, res) => {
+          if (err) {
+            console.log(err);
+          } else {
+            res.status(200).send(info);
+          }
+        }
+      );
+    } catch (err) {
+      res.status(500).send(err);
+    }
   },
 };

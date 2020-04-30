@@ -20,8 +20,11 @@ function Register(props) {
         last_name: lastNameInput,
       })
       .then((response) => {
+        const {email} = response.data;
         props.getCustomer(response.data);
         props.history.push("/");
+        axios.post('/api/email', {email})
+          .catch((err) => console.log(err))
       })
       .catch((err) => console.log(err));
   };

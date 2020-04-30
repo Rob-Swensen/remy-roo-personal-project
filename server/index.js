@@ -60,3 +60,7 @@ app.put('/api/payment/:cart_id', ctrl.changePaidStatus);
 //Orders Endpoint
 
 app.get('/api/orders/:customer_id', ctrl.getOrders)
+
+//Nodemailer Endpoint
+
+app.post('/api/email', ctrl.email);
